@@ -21,9 +21,10 @@ app.use(express.json());
 // app.use(cors({ origin: "*" }));
 app.use(
 	cors({
-		origin: ["http://localhost:3000", "https://travel-story-fe.vercel.app"],
+		origin: ["http://localhost:5173", "https://travel-story-fe.vercel.app"],
 		methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-		credentials: true,
+		credentials: true, // Nếu dùng cookie hoặc xác thực
+		allowedHeaders: ["Content-Type", "Authorization"],
 	})
 );
 app.options("*", cors());
