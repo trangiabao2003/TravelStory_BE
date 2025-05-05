@@ -18,7 +18,15 @@ mongoose.connect(config.connectionString);
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: "*" }));
+// app.use(cors({ origin: "*" }));
+app.use(
+	cors({
+		origin: ["http://localhost:3000", "https://travel-story-fe.vercel.app"],
+		methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+		credentials: true,
+	})
+);
+app.options("*", cors());
 
 app.get("/", async (req, res) => {
 	res.send("Hello from backend!");
@@ -117,7 +125,7 @@ app.post("/image-upload", upload.single("image"), async (req, res) => {
 				.json({ error: true, message: "No image uploaded" });
 		}
 
-		const imageUrl = `http://localhost:8000/uploads/${req.file.filename}`;
+		const imageUrl = `https://travel-story-be.vercel.app/uploads/${req.file.filename}`;
 
 		res.status(201).json({ imageUrl });
 	} catch (error) {
