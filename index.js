@@ -20,6 +20,10 @@ const app = express();
 app.use(express.json());
 app.use(cors({ origin: "*" }));
 
+app.get("/", async (req, res) => {
+	res.send("Hello from backend!");
+});
+
 // Create Account
 app.post("/create-account", async (req, res) => {
 	const { fullName, email, password } = req.body;
@@ -354,6 +358,6 @@ app.get("/travel-stories/filter", authenticateToken, async (req, res) => {
 	}
 });
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
 module.exports = app;
