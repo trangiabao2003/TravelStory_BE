@@ -126,7 +126,7 @@ app.post("/image-upload", upload.single("image"), async (req, res) => {
 				.json({ error: true, message: "No image uploaded" });
 		}
 
-		const imageUrl = `https://travel-story-be.vercel.app/uploads/${req.file.filename}`;
+		const imageUrl = `./uploads/${req.file.filename}`;
 
 		res.status(201).json({ imageUrl });
 	} catch (error) {
@@ -239,7 +239,7 @@ app.put("/edit-story/:id", authenticateToken, async (req, res) => {
 				.json({ error: true, message: "Travel story not found" });
 		}
 
-		const placeholderImgUrl = `http://localhost:8000/assets/placeholder.png`;
+		const placeholderImgUrl = `./assets/placeholder.png`;
 
 		travelStory.title = title;
 		travelStory.story = story;
